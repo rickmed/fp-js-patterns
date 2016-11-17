@@ -1,0 +1,27 @@
+{
+  "name": "fp-js-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rickmed/fp-js-patterns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rickmed/fp-js-patterns/issues"
+  },
+  "homepage": "https://github.com/rickmed/fp-js-patterns#readme",
+  "dependencies": {
+    "fun-task": "^1.1.2",
+    "futurize": "^1.0.2",
+    "ramda": "^0.22.1",
+    "ramda-debug": "^0.1.4",
+    "superagent": "^2.2.0",
+    "trampa": "^1.0.0"
+  }
+}
