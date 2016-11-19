@@ -21,6 +21,7 @@
     "futurize": "^1.0.2",
     "ramda": "^0.22.1",
     "ramda-debug": "^0.1.4",
+    "ramda-fantasy": "^0.7.0",
     "superagent": "^2.2.0",
     "trampa": "^1.0.0"
   }
