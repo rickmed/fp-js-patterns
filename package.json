@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rickmed/fp-js-patterns#readme",
   "dependencies": {
     "fun-task": "^1.1.2",
+    "function-arguments": "^1.0.8",
     "futurize": "^1.0.2",
     "ramda": "^0.22.1",
     "ramda-debug": "^0.1.4",

@@ -1,56 +1,44 @@
 const fs = require('fs')
+const path = require('path')
 const {Future} = require('ramda-fantasy')
 const R = require('ramda')
-
-// // String -> Future Error [String]
-// ls = path => Future((onErr, onSuc) =>
-//   fs.readdir(path, (err, files) => err ? onErr(err) : onSuc(files)))
-
-// // String -> Future Error String
-// cat = file => Future((onErr, onSuc) =>
-//   fs.readFile(file, 'utf8', (err, data) => err ? onErr(err) : onSuc(data)))
-
-// catDir = dir =>
-//   ls(dir)
-//   .chain(traverse(Future.of, cat)) // traverse [String] -> [Future String]
-//   .map(join('\n'))
-
-// catDir('./')
-//   .fork(e => console.log(e), val => console.log(val))
+const {futurize} = require('./futurize.js')
 
 
-// fileType => stat =>
-//   switch (stat) {
-
-//   }
-
-let isFn = dataType =>
-  Object(dataType) instanceof Function ? true : false
-
-let isMethod = obj => k =>
-  isFn(obj[k])
-
-let callMethod = inp => obj => k =>
-  obj[k](inp)
-
-// Spec -> Obj -> *
-let callMethodsWhile => ({inp, out}) => obj => {
-  let callMthd = callMethod(inp)(obj)
-  let ks = R.keysIn(obj)
-  return isMethod(obj)(k) ? callMth(k)
-}
-
-// continue starting a function from keysIn(obj).map(etc...)
+//
+let f_readdir = futurize(fs.readdir)
+let f_readFile = futurize(fs.readFile)
+let f_stat = futurize(fs.stat)
+// refactor to send a list of fns with destructuring
 
 
-let onErr = e => console.log(e)
-let onSuc = v => console.log(v)
+let print = a =>
+  console.log(a)
+
+
+// Str -> stat -> Bool
+let isType = type => stat =>
+  stat[type]() ? true : false
+
+
+  // .filter(isType('isDirectory'))
+
+
+// String -> Future Error String
+let catDir = dir =>
+  f_readdir(dir, 'utf8')
+  .chain(R.traverse(Future.of, R.flip(f_readFile)('utf8'))) // traverse [Future Str] -> Future [String]
+  .map(R.join('\n'))
+
+catDir('.git/hooks/')
+  // print could be a function that checks for error type and reacts
+  .fork(print, print)
+
 
 let nodeCB = (errCB, sucCB) => (e, v) =>
     e ? errCB(e) : sucCB(v)
 
-// nodeCB = (onErr, onSuc) => err ? onErr(err) : onSuc(v)
+// then implement with fluture (cancellation) and fn calls instead of dot chaining
 
-fs.stat('.', nodeCB(onErr, onSuc))
+// f_readFile('eff.js', 'utf8').fork(print, print)
 
-console.log(R.is(Function, () => {}))
