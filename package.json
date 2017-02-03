@@ -17,13 +17,24 @@
   },
   "homepage": "https://github.com/rickmed/fp-js-patterns#readme",
   "dependencies": {
-    "fun-task": "^1.1.2",
-    "function-arguments": "^1.0.8",
-    "futurize": "^1.0.2",
+    "control.async": "^0.5.3",
+    "data.maybe": "^1.2.2",
+    "data.task": "^3.1.1",
+    "futurize": "^1.2.0",
+    "immutable": "^3.8.1",
+    "immutable-ext": "^1.0.8",
+    "jest": "^18.1.0",
     "ramda": "^0.22.1",
     "ramda-debug": "^0.1.4",
-    "ramda-fantasy": "^0.7.0",
+    "split-guide": "^1.2.0",
     "superagent": "^2.2.0",
     "trampa": "^1.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "cost-of-modules": "^0.5.2",
+    "expect": "^1.20.2"
   }
 }

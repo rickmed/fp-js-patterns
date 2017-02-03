@@ -1,6 +1,7 @@
-const Task = require('fun-task')
+const Task = require('data.task')
 
-exports.taskify = fn => (...args) => Task.create( (onSuc, onFail) =>
-  fn(...args, (err, res) => err ? onFail(err) : onSuc(res) )
-)
+exports.taskfy = fn =>
+  (...args) => new Task( (rej, res) =>
+    fn(...args, (e, x) => e ? rej(e) : res(x) )
+  )
 

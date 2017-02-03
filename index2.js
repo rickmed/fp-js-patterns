@@ -1,18 +1,17 @@
 const Task = require('data.task')
 const Maybe = require('data.maybe')
+const {taskfy} = require('./taskify')
 const {readdir, readFile, lstat} = require('fs')
 const R = require('ramda')
-const { futurize } = require('futurize')
-
-const taskfy = futurize(Task)
+const {List} = require('immutable-ext')
 
 // str -> Task [str]
 const ls = dir =>
-  taskfy(readdir)(dir)
+  liftNode(readdir)(dir)
 
 // str -> Task str
 const __cat = readFile => file =>
-  taskfy(readFile)(file, 'utf8')
+  liftNode(readFile)(file, 'utf8')
 
 
 const read = __cat(readFile)

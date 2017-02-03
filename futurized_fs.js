@@ -42,4 +42,3 @@ console.log(R.mapObjIndexed( (num, key, obj) => `${key}`, fs))
 module.exports = { futurize, fs }
 
 // TODO: make this a library.
-// learn how to test it: https://github.com/futurize/futurize
